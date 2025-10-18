@@ -1,8 +1,17 @@
+management:
+  endpoints:
+    web: 
+      exposure: 
+        include: health,info
 eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
+    healthcheck:
+      enabled: true
     service-url:
       defaultZone: http://localhost:8761/eureka/
   instance:
-    hostname: localhost
+    prefer-ip-address: true
+    health-check-url-path: /actuator/health
+    lease-renewal-interval-in-seconds: 10
